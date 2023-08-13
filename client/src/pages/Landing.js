@@ -1,16 +1,17 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
-import styled from 'styled-components'
+import styled from "styled-components";
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
         <img src={logo} alt="" className="logo" />
+        <h5>JobSerachFlow</h5>
       </nav>
       <div className="container page">
         <div className="info">
           <h1>
-            Job <span>Tracking</span>
+            JOB <span>TRACKING</span>
           </h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam at
@@ -18,8 +19,10 @@ const Landing = () => {
             commodi velit, ipsum blanditiis nihil repudiandae cupiditate
             quibusdam. Maxime, optio!
           </p>
-          <button className="btn btn-hero">Register</button>
-          <button className="btn btn-hero">Login</button>
+          <div className="btn-section">
+            <button className="btn btn-hero">Register</button>
+            <button className="btn btn-hero">Login</button>
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -35,6 +38,13 @@ const Wrapper = styled.main`
     display: flex;
     align-items: center;
   }
+  .logo {
+    width: 110px;
+    height: 140px;
+    padding: 2.4rem;
+    margin-left: 0;
+    padding-left: 0;
+  }
   .page {
     min-height: calc(100vh - var(--nav-height));
     display: grid;
@@ -48,10 +58,18 @@ const Wrapper = styled.main`
     }
   }
   p {
-    color: var(--grey-600);
+    color: var(--grey-900);
   }
   .main-img {
     display: none;
+  }
+  .btn-hero{
+    margin: 1rem;
+    margin-left: 0;
+  }
+  h5{
+    font-weight: 700;
+    padding-top: 1.5rem;
   }
   @media (min-width: 992px) {
     .page {
@@ -62,5 +80,6 @@ const Wrapper = styled.main`
       display: block;
     }
   }
-`
+
+`;
 export default Landing;
