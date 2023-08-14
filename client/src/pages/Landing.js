@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
+import main from "../assets/images/main.svg";
 import styled from "styled-components";
 const Landing = () => {
   return (
@@ -24,6 +25,8 @@ const Landing = () => {
             <button className="btn btn-hero">Login</button>
           </div>
         </div>
+        <img src={main} alt="" className="img main-img" />
+
       </div>
     </Wrapper>
   );
