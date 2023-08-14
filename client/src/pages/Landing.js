@@ -1,13 +1,17 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
-import main from "../assets/images/main.svg";
+import main from "../assets/images/main.jpg";
 import styled from "styled-components";
+
+import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
         <img src={logo} alt="" className="logo" />
-        <h5>JobSerachFlow</h5>
+        <h5>
+          <span>JOBSEARCHFLOW</span>
+        </h5>
       </nav>
       <div className="container page">
         <div className="info">
@@ -20,13 +24,12 @@ const Landing = () => {
             commodi velit, ipsum blanditiis nihil repudiandae cupiditate
             quibusdam. Maxime, optio!
           </p>
-          <div className="btn-section">
-            <button className="btn btn-hero">Register</button>
-            <button className="btn btn-hero">Login</button>
-          </div>
+
+          <Link to="/register" className="btn btn-hero">
+            Register/login
+          </Link>
         </div>
         <img src={main} alt="" className="img main-img" />
-
       </div>
     </Wrapper>
   );
@@ -60,17 +63,24 @@ const Wrapper = styled.main`
       color: var(--primary-500);
     }
   }
+  h5 {
+    font-weight: 700;
+    margin-top: 0.5rem;
+    span {
+      color: var(--primary-500);
+    }
+  }
   p {
     color: var(--grey-900);
   }
   .main-img {
     display: none;
   }
-  .btn-hero{
+  .btn-hero {
     margin: 1rem;
     margin-left: 0;
   }
-  h5{
+  h5 {
     font-weight: 700;
     padding-top: 1.5rem;
   }
@@ -83,6 +93,5 @@ const Wrapper = styled.main`
       display: block;
     }
   }
-
 `;
 export default Landing;
