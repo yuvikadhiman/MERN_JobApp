@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.aside`
   display: none;
@@ -25,6 +25,22 @@ const Wrapper = styled.aside`
       display: flex;
       align-items: center;
       padding-left: 2.5rem;
+    }
+    .logo {
+      width: 80px;
+      height: 110px;
+      padding: 2.4rem;
+   
+      padding-left: 0;
+    }
+    h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 1.4rem;
+      margin-left: -1rem;
+      span {
+        color: var(--primary-500);
+      }
     }
     .nav-links {
       padding-top: 2rem;
@@ -62,5 +78,5 @@ const Wrapper = styled.aside`
       color: var(--primary-500);
     }
   }
-`
-export default Wrapper
+`;
+export default Wrapper;
