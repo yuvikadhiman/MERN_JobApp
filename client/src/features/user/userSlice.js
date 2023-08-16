@@ -17,7 +17,6 @@ export const registerUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const resp = await CustomFetch.post("/auth/register", user);
-      console.log(resp.data)
       console.log('registered')
       return resp.data;
     } catch (error) {
