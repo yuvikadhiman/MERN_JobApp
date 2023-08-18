@@ -49,14 +49,14 @@ const Register = () => {
       })
     );
   };
- const toggleMember = () => {
+  const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
 
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate('/');
+        navigate("/");
       }, 2000);
     }
   }, [user]);
@@ -103,13 +103,13 @@ const Register = () => {
           type="button"
           className="btn btn-block btn-hipster"
           disabled={isLoading}
-          onClick={() =>
+          onClick={() => {
             dispatch(
               loginUser({ email: "testUser@test.com", password: "secret" })
-            )
-          }
+            );
+          }}
         >
-          {isLoading ? "loading..." : "demo app"}
+          {isLoading ? "loading..." : "demo"}
         </button>
         <p>
           {values.isMember ? "Not a member yet?" : "Already a member?"}

@@ -22,7 +22,13 @@ const initialState = {
 export const getAllJobs = createAsyncThunk(
   "allJobs/getJobs",
   async (_, thunkAPI) => {
-    let url = `/jobs`;
+
+    const { page, search, sort, searchStatus, searchType } =
+      thunkAPI.getState().allJobs;
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}&page=${page}`;
+    if (search) {
+      url = url + `&search=${search}`;
+    }
     try {
       const resp = await CustomFetch.get(url, {
         headers: {
@@ -36,6 +42,18 @@ export const getAllJobs = createAsyncThunk(
   }
 );
 
+export const showStats = createAsyncThunk(
+  "allJobs/showStats",
+  async (_, thunkAPI) => {
+    try {
+      const resp = await CustomFetch.get("/jobs/stats");
+      console.log(resp.data);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
 
 const AllJobSlice = createSlice({
   name: "allJobs",
@@ -47,6 +65,16 @@ const AllJobSlice = createSlice({
     hideLoading: (state) => {
       state.isLoading = false;
     },
+    handleChange: (state, { payload: { name, value } }) => {
+      state.page = 1;
+      state[name] = value;
+    },
+    clearFilters: (state) => {
+      return { ...state, ...initialFilterState };
+    },
+    changePage: (state, { payload }) => {
+      state.page = payload;
+    },
   },
   extraReducers: {
     // --------createjob post -----------
@@ -56,12 +84,32 @@ const AllJobSlice = createSlice({
     [getAllJobs.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.jobs = payload.jobs;
+      state.numOfPages = payload.numOfPages;
+      state.totalJobs = payload.totalJobs;
     },
     [getAllJobs.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
+    [showStats.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [showStats.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.stats = payload.defaultStats;
+      state.monthlyApplications = payload.monthlyApplications;
+    },
+    [showStats.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
   },
 });
-export const { showLoading, hideLoading } = AllJobSlice.actions;
+export const {
+  showLoading,
+  hideLoading,
+  handleChange,
+  clearFilters,
+  changePage,
+} = AllJobSlice.actions;
 export default AllJobSlice.reducer;

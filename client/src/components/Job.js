@@ -4,7 +4,7 @@ import Wrapper from "../assets/wrappers/Job";
 import { useDispatch } from "react-redux";
 import JobInfo from "./JobInfo";
 import moment from "moment";
-import { setEditJob, deleteJob } from "../features/jobs/AddjobSlice";
+import { setEditJob, deleteJob } from "../features/jobs/jobSlice";
 
 const Job = ({
   _id,
