@@ -19,11 +19,12 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { firstName, email, lastName, location } = userData;
+    const Data={firstName, email, lastName, location}
     if (!firstName || !email || !lastName || !location) {
       toast.error("please fill out all fields");
       return;
     }
-    dispatch(updateUser(userData));
+    dispatch(updateUser(Data));
   };
 
   const handleChange = (e) => {

@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const resp = await CustomFetch.post("/auth/register", user);
-      console.log("registered");
+      
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -44,8 +44,12 @@ export const updateUser = createAsyncThunk(
   "user/updateUser",
   async (user, thunkAPI) => {
     try {
-      const res = await CustomFetch.patch("/auth/updateUser", user);
-      console.log(res.data)
+      const res = await CustomFetch.patch("/auth/updateUser", user,{
+        headers: {
+             
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -61,10 +65,13 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
-    logoutUser: (state) => {
+    logoutUser: (state,{payload}) => {
       state.user = null;
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
+      if(payload){
+        toast.success(payload)
+      }
     },
   },
   extraReducers: {

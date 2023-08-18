@@ -1,10 +1,19 @@
-import React from 'react'
+import { FormRow, FormRowSelect } from "../../components";
+import Wrapper from "../../assets/wrappers/DashboardFormPage";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
+import { JobsContainer, SearchContainer } from "../../components";
+
 
 const AllJobs = () => {
   return (
-    <div>
-      all jobs
-    </div>
+    <>
+      <>
+      <SearchContainer />
+      <JobsContainer />
+    </>
+    </>
   )
 }
 
