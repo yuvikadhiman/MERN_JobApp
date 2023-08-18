@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const resp = await CustomFetch.post("/auth/register", user);
-      
+
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -44,9 +44,8 @@ export const updateUser = createAsyncThunk(
   "user/updateUser",
   async (user, thunkAPI) => {
     try {
-      const res = await CustomFetch.patch("/auth/updateUser", user,{
+      const res = await CustomFetch.patch("/auth/updateUser", user, {
         headers: {
-             
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       });
@@ -65,12 +64,12 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
-    logoutUser: (state,{payload}) => {
+    logoutUser: (state, { payload }) => {
       state.user = null;
       state.isSidebarOpen = false;
       removeUserFromLocalStorage();
-      if(payload){
-        toast.success(payload)
+      if (payload) {
+        toast.success(payload);
       }
     },
   },
@@ -84,7 +83,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       addUserToLocalStorage(user);
-      toast.success(`Hello there ${user.name}`);
+      toast.success(`Hello there ${user.firstName}`);
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -100,7 +99,8 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       addUserToLocalStorage(user);
-      toast.success(`Welcome back ${user.name}`);
+      console.log(user.firstName)
+      toast.success(`Welcome back ${user.firstName}`);
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
