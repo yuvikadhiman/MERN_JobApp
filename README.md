@@ -37,7 +37,7 @@ git clone https://github.com/yuvikadhiman/MERN_JobApp.git
 ```
 Install NPM packages
 ```
-  npm install
+npm install
 ```
 Environment Variables
 
@@ -51,8 +51,8 @@ To run this project, you will need to add the following environment variables to
 
 ## How To Run Application
 ```
-    cd server
-    npm run dev
+cd server
+npm run dev
 ```
 
  
