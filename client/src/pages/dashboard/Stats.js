@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { StatsContainer, Loading, ChartsContainer } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { showStats } from "../../features/jobs/AlljobSlice";
+
 const Stats = () => {
   const { isLoading, monthlyApplications } = useSelector(
     (store) => store.allJobs
