@@ -33,7 +33,7 @@ The core features of the API include:
 
 Clone the repo
 ```
-`git clone https://github.com/yuvikadhiman/MERN_JobApp.git`
+git clone https://github.com/yuvikadhiman/MERN_JobApp.git
 ```
 Install NPM packages
 ```
@@ -49,7 +49,7 @@ To run this project, you will need to add the following environment variables to
 
 `JWT_LIFETIME =`
 
-Start with npm
+## How To Run Application
 ```
     cd server
     npm run dev
