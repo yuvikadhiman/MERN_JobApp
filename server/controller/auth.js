@@ -48,7 +48,35 @@ const login = async (req, res) => {
     },
   });
 };
+
+const updateUser = async (req, res) => {
+  const { firstName, email, lastName, location } = req.body;
+  if (!firstName || !email || !lastName || !location) {
+    throw new BadRequestError("Please provide your details");
+  }
+  const user = await User.findOne({ _id: req.user.userId });
+  user.email = email;
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.location = location;
+  await user.save();
+
+  if (!user) {
+    throw new UnauthenticatedError("invalid Credentials");
+  }
+  const token = user.createJWT();
+  res.status(StatusCodes.CREATED).json({
+    user: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      location: user.location,
+      token,
+    },
+  });
+};
 module.exports = {
   register,
   login,
+  updateUser,
 };
