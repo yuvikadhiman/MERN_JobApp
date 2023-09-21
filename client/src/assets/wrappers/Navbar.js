@@ -87,6 +87,6 @@ const Wrapper = styled.nav`
     display: none;
   }
     }
-  }
+  
 `;
 export default Wrapper;
