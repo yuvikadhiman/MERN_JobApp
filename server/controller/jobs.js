@@ -74,6 +74,7 @@ const getJob = async (req, res) => {
   }
   res.status(StatusCodes.OK).json({ job });
 };
+
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId;
   const job = await Job.create(req.body);
